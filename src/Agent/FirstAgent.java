@@ -1,5 +1,7 @@
 package Agent;
 
-public class FirstAgent {
+import jade.core.Agent;
+
+public class FirstAgent extends Agent{
 
 }
