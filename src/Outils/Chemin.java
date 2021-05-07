@@ -1,15 +1,17 @@
 package Outils;
 /*
-	Cette classe sert à trouver des points solution donnée est proche de la 
+	Cette classe sert à trouver des chemins qui represente une solution donnée est proche de la 
 	solution optimale du problème souhaité. 
 	Il détermine l'adéquation d'une solution.
 */
+
+import java.util.Arrays;
 
 public class Chemin {
 
 	
 	private int [] villeParcourus; // ensemble des villes déjà visité
-	private double score = -1; 
+	private double score = -1;  // score convenable au chemin  
 	
 	public Chemin(int[] villeParcourus)
 	{
@@ -37,6 +39,30 @@ public class Chemin {
 
 	public void setVilleParcourus(int[] villeParcourus) {
 		this.villeParcourus = villeParcourus;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
+	}
+
+	@Override
+	public String toString() {
+		return "Chemin [villeParcourus=" + Arrays.toString(villeParcourus) + ", score=" + score + "]";
+	}
+	
+	// verifier si une ville existe sur un chemin 
+	public boolean verifierVille(int ville)
+	{
+		for(int i = 0; i < this.villeParcourus.length; i++)
+			if(this.villeParcourus[i] == ville)
+				return true;
+		
+		
+		return false;
 	}
 	
 	
