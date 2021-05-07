@@ -9,6 +9,7 @@ public class Ville {
 	private boolean visite;
 	
 	
+	//------- Constructeur ------
 	public Ville(int idVille, String nomVille, double posX, double posY, boolean visite) {
 		super();
 		this.idVille = idVille;
@@ -19,6 +20,7 @@ public class Ville {
 	}
 
 
+	//------- Getetrs & Setters -------
 	public int getIdVille() {
 		return idVille;
 	}
