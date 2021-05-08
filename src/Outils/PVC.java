@@ -1,5 +1,7 @@
 package Outils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PVC {
@@ -92,11 +94,11 @@ public class PVC {
 		meilleureDistance = d.getDistance();
 		
 		//----- Test ---
-		List<Ville> lv = new ArrayList<Ville>(Arrays.asList(d.getParcours));
+		List<Ville> lv = new ArrayList<Ville>(Arrays.asList(d.getParcours()));
 		
 		lv.add(lv.get(0));
 		
-		return lv.toArray(new Ville[villes.size()]);
+		return lv.toArray(new Ville[villesList.size()]);
 		
 		
 	}
