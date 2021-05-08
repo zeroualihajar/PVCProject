@@ -1,5 +1,7 @@
 package Outils;
 
+import java.util.List;
+
 public class PVC {
 	
 	public static int maxGenerations = 15000;
@@ -49,5 +51,54 @@ public class PVC {
 		this.etapeCourante = this.villes.length;
 	}
 	
+	//-------- Retourne un tableau des villes dont la distance entre eux est minimale ---
+	public Ville[] getPlusCourteDist(List<Ville> villesList) {
+		
+		//---- On créé un tableau des villes à partir de la liste donnée en paramètre ---
+		this.villes = villesList.toArray(new Ville[villesList.size()]);
+		
+		AlgoGenetic aGenit = new AlgoGenetic(100, 0.001, 0.9, 2, 5);
+		
+		//----- initialisation des solutions --------
+		Solutions sol = aGenit.initSolutions(villes.length);
+		
+		//-- On définit le score du chemin ---
+		aGenit.definitScoreChemin(sol, villes);
+		
+		Distance debutDist = new Distance(sol.CheminApte(0), villes);
+		
+		//------ on créé une génération courante ------------
+		int generation = 1;
+		
+		while(aGenit.conditionFin(generation, maxGenerations) == false) {
+			
+			//--- score du chemin à partir de la solution ---
+			Distance d = new Distance(sol.CheminApte(0), villes);
+			
+			sol = aGenit.crossoverPopulation(sol);
+			
+			sol = aGenit.muterPopulation(sol);
+			
+			//--- on définit le score du chemin ---
+			aGenit.definitScoreChemin(sol, villes);
+			
+			//------ On incrémente la génération courante ---------
+			generation++;
+			
+		}
+		
+		//--- La meilleure distance ----
+		Distance d = new Distance(sol.CheminApte(0), villes);
+		meilleureDistance = d.getDistance();
+		
+		//----- Test ---
+		List<Ville> lv = new ArrayList<Ville>(Arrays.asList(d.getParcours));
+		
+		lv.add(lv.get(0));
+		
+		return lv.toArray(new Ville[villes.size()]);
+		
+		
+	}
 
 }
