@@ -1,4 +1,7 @@
 package voyageur;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import Outils.Ville;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.ParallelBehaviour;
@@ -8,13 +11,13 @@ import jade.lang.acl.MessageTemplate;
 
 public class AgentVoyageur extends GuiAgent {
 	
-	private Outils.TSPUI interfaceAgent;
+	private voyageur.InterfaceVoyageur interfaceAgent;
 	
 	
 	protected void setup() {
 		System.out.println("Bienvenu ! C'est le voyageur Agent");
 		
-		interfaceAgent = new Outils.TSPUI();
+		interfaceAgent = new voyageur.InterfaceVoyageur();
 		interfaceAgent.createAndDisplay();
 		interfaceAgent.setAgentVoyageur(this);
 		
@@ -49,8 +52,8 @@ public class AgentVoyageur extends GuiAgent {
 				else if(acl2 != null) {
 					Ville[] villeOrdonnee = (Ville[]) acl2.getContentObject();
 					interfaceAgent.getBar().villes = villeOrdonnee;
-//					interfaceAgent.panelMap().setVillesro
-							
+					interfaceAgent.mapPanel().setVillesroute(new ArrayList<Ville>(Arrays.asList(villeOrdonnee)));
+					
 					
 				}
 				
