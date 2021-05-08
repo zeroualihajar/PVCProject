@@ -20,21 +20,15 @@ public class MapPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private List<Ville> villes = new ArrayList<Ville>();
-	private List<Ville> chemins = new ArrayList<Ville>();//Route
+	private List<Ville> distances = new ArrayList<Ville>();
+	private boolean plusCourt = false;
+	private int etapeActuelle;
 
 	public Image imageVille;
 	public int WIDTH_MAP = 500;
 	public int HEIGHT_MAP = 300;
 	public Image imageBackground;
-	
-	private boolean plusCourt=false;
-	private int etapeActuelle;
-	
-	private List<Ville> distances = new ArrayList<Ville>();
-	
-	
-	
-	
+
 	/**
 	 * Create the panel.
 	 */
@@ -71,17 +65,49 @@ public class MapPanel extends JPanel {
 		});
 	}
 
+	public List<Ville> getVilles() {
+		return villes;
+	}
+
+	public void setVilles(List<Ville> villes) {
+		this.villes = villes;
+	}
+
+	public List<Ville> getDistances() {
+		return distances;
+	}
+
+	public void setDistances(List<Ville> distances) {
+		this.distances = distances;
+	}
+
+	public boolean isPlusCourt() {
+		return plusCourt;
+	}
+
+	public void setPlusCourt(boolean plusCourt) {
+		this.plusCourt = plusCourt;
+	}
+
+	public int getEtapeActuelle() {
+		return etapeActuelle;
+	}
+
+	public void setEtapeActuelle(int etapeActuelle) {
+		this.etapeActuelle = etapeActuelle;
+	}
+
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		super.paint(g2d);
 
-		for(Ville ville : villes) {
+		for (Ville ville : villes) {
 			paintVille(g2d, ville);
 		}
 	}
 
-	/* ----- L'arrière plan (la carte) du panel ----- */
+	/* ----- L'arriï¿½re plan (la carte) du panel ----- */
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -124,7 +150,7 @@ public class MapPanel extends JPanel {
 	}
 
 	/* ----- Dessin d'une route entre deux villes ----- */
-	public void paintChemin(Graphics2D g, Ville ville1, Ville ville2) {
+	public void paintDistance(Graphics2D g, Ville ville1, Ville ville2) {
 		if (ville1 != null && ville2 != null) {
 			int x1 = (int) ville1.getPosX();
 			int y1 = (int) ville1.getPosY();
@@ -137,47 +163,14 @@ public class MapPanel extends JPanel {
 		}
 	}
 
-	public List<Ville> getVilles() {
-		return villes;
+	public void paintPlusCourtDistance(Graphics2D g2d) {
+		List<Ville> mesDistances = this.distances;
+		for (int i = 0; i < mesDistances.size() - 1; i++) {
+			if (i >= etapeActuelle) {
+				System.out.println("bnj" + etapeActuelle + mesDistances.size());
+				return;
+			}
+			paintDistance(g2d, mesDistances.get(i), mesDistances.get(i + 1));
+		}
 	}
-
-	public void setVilles(List<Ville> villes) {
-		this.villes = villes;
-	}
-
-	public List<Ville> getChemins() {
-		return chemins;
-	}
-
-	public void setChemins(List<Ville> chemins) {
-		this.chemins = chemins;
-	}
-
-	public boolean isPlusCourt() {
-		return plusCourt;
-	}
-
-	public void setPlusCourt(boolean plusCourt) {
-		this.plusCourt = plusCourt;
-	}
-	
-	public int getEtapeActuelle() {
-		return etapeActuelle;
-	}
-
-	public void setEtapeActuelle(int etapeActuelle) {
-		this.etapeActuelle = etapeActuelle;
-	}
-
-	public List<Ville> getDistances() {
-		return distances;
-	}
-
-	public void setDistances(List<Ville> distances) {
-		this.distances = distances;
-	}
-	
-	
-	
-	
 }

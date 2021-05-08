@@ -6,6 +6,8 @@ import java.util.Random;
 
 public class Solutions {
 	
+	/* Cette classe est cree pour l'ensemble des solutions ou l'ensemble des chemins trouves   */
+	
 	private Chemin chemins[];     //---- liste des chemins possibles
 	private double score = -1;    //---- represente le fitness de chaque chemin
 	
@@ -67,7 +69,7 @@ public class Solutions {
 	}
 	
 	
-	//----- returner le chemin ???????????
+	//----- retourner le chemin ???????????
 	public Chemin getChemin(int offset) {
 		return chemins[offset];
 	}

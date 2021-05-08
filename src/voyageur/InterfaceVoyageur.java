@@ -12,25 +12,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import jade.gui.GuiEvent;
 import Outils.PVC;
 import Outils.Ville;
+import jade.gui.GuiEvent;
 
 public class InterfaceVoyageur extends JFrame {
 	private static final long serialVersionUID = 1L;
-	
+
 	private JPanel contentPane;
 	public JPanel mapPanel;
 	public MapPanel map;
-	
+
+	private AgentVoyageur agentVoyageur;
 	private Ville villes[];
 	private PVC pvc = new PVC();
-	
-	
-	private AgentVoyageur agentVoyageur;
-	
-	
-
 
 	/**
 	 * Launch the application.
@@ -68,12 +63,12 @@ public class InterfaceVoyageur extends JFrame {
 		mapPanel.setBounds(10, 62, 500, 300);
 		contentPane.add(mapPanel);
 		mapPanel.setLayout(null);
-		
+
 		map = new MapPanel();
 		map.setBounds(245, 5, 10, 10);
 		map.setBounds(0, 0, map.WIDTH_MAP, map.HEIGHT_MAP);
-        mapPanel.add(map);
-        map.repaint();
+		mapPanel.add(map);
+		map.repaint();
 
 		JButton getCheminBtn = new JButton("Calculer");
 		getCheminBtn.addActionListener(new ActionListener() {
@@ -88,8 +83,35 @@ public class InterfaceVoyageur extends JFrame {
 				agentVoyageur.onGuiEvent(gev);
 			}
 		});
-		getCheminBtn.setBounds(10, 13, 113, 39);
+		getCheminBtn.setBounds(135, 16, 113, 39);
 		contentPane.add(getCheminBtn);
+
+		JButton undoBtn = new JButton("Undo");
+		undoBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getPvc().EtapePrecedente();
+				int i = getPvc().getEtapeCourante();
+				System.out.println(i + "cc");
+				map.setEtapeActuelle(i);
+				map.repaint();
+			}
+		});
+		undoBtn.setBounds(10, 19, 55, 33);
+		contentPane.add(undoBtn);
+
+		JButton redoBtn = new JButton("Redo");
+		redoBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (getPvc().getEtapeCourante() < villes.length - 1) {
+					map.setEtapeActuelle(map.getEtapeActuelle() + 1);
+				}
+				map.setEtapeActuelle(map.getEtapeActuelle() + 1);
+				System.out.println(map.getEtapeActuelle() + "cc");
+				map.repaint();
+			}
+		});
+		redoBtn.setBounds(70, 19, 55, 33);
+		contentPane.add(redoBtn);
 
 		/*
 		 * mapPanel.addMouseListener(new MouseAdapter() {
@@ -134,6 +156,4 @@ public class InterfaceVoyageur extends JFrame {
 	public void setAgentVoyageur(AgentVoyageur agentVoyageur) {
 		this.agentVoyageur = agentVoyageur;
 	}
-	
-	
 }
