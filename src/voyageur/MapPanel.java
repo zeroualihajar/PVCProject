@@ -48,7 +48,9 @@ public class MapPanel extends JPanel {
 					// imageVille = new
 					// ImageIcon(MapPanel.class.getResource("/images/city"+(villes.get(villes.size()-1).getIdVille()+1)+".png")).getImage();//ImageIO.read(new
 					// File("/images/" + "corona.jpeg"));
-					imageVille = new ImageIcon(MapPanel.class.getResource("/images/city1.png")).getImage();
+					
+					imageVille = new ImageIcon(MapPanel.class.getResource("/images/map1.png")).getImage();
+					
 					// System.out.println("/images/city"+(villes.get(villes.size()-1).getIdVille()+1)+".png");
 //					this.VilleImageCenter = new Dimension(this.VilleImage.getWidth() / 2, this.VilleImage.getHeight() / 2);
 				} catch (final Exception ex) {
@@ -113,8 +115,11 @@ public class MapPanel extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponent(g2d);
 
-		this.imageBackground = new ImageIcon(MapPanel.class.getResource("/images/map.png")).getImage();
-
+		ImageIcon img = new ImageIcon();
+		this.imageBackground = new ImageIcon(MapPanel.class.getResource("/images/maroc2.png")).getImage();
+		this.imageBackground.getScaledInstance(50, 100, java.awt.Image.SCALE_SMOOTH);
+		
+		
 //		int width = imageBackground.getWidth(this)/2;
 //		int height = imageBackground.getHeight(this)/2;
 

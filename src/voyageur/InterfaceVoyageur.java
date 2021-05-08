@@ -50,25 +50,24 @@ public class InterfaceVoyageur extends JFrame {
 	public InterfaceVoyageur() {
 		setTitle("PVC");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 644, 412);
+		setBounds(100, 100, 644, 532);
 		setResizable(false);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(248, 248, 255));
+		contentPane.setBackground(new Color(222, 184, 135));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		mapPanel = new JPanel();
 		mapPanel.setBackground(new Color(255, 245, 238));
-		mapPanel.setBounds(10, 62, 500, 300);
+		mapPanel.setBounds(10, 16, 400, 478);
 		contentPane.add(mapPanel);
 		mapPanel.setLayout(null);
-
-		map = new MapPanel();
-		map.setBounds(245, 5, 10, 10);
-		map.setBounds(0, 0, map.WIDTH_MAP, map.HEIGHT_MAP);
-		mapPanel.add(map);
-		map.repaint();
+		
+				map = new MapPanel();
+				map.setBounds(0, 0, 401, 478);
+				mapPanel.add(map);
+				map.repaint();
 
 		JButton getCheminBtn = new JButton("Calculer");
 		getCheminBtn.addActionListener(new ActionListener() {
@@ -83,7 +82,7 @@ public class InterfaceVoyageur extends JFrame {
 				agentVoyageur.onGuiEvent(gev);
 			}
 		});
-		getCheminBtn.setBounds(135, 16, 113, 39);
+		getCheminBtn.setBounds(483, 16, 113, 39);
 		contentPane.add(getCheminBtn);
 
 		JButton undoBtn = new JButton("Undo");
@@ -96,7 +95,7 @@ public class InterfaceVoyageur extends JFrame {
 				map.repaint();
 			}
 		});
-		undoBtn.setBounds(10, 19, 55, 33);
+		undoBtn.setBounds(483, 124, 113, 33);
 		contentPane.add(undoBtn);
 
 		JButton redoBtn = new JButton("Redo");
@@ -110,7 +109,7 @@ public class InterfaceVoyageur extends JFrame {
 				map.repaint();
 			}
 		});
-		redoBtn.setBounds(70, 19, 55, 33);
+		redoBtn.setBounds(483, 80, 113, 33);
 		contentPane.add(redoBtn);
 
 		/*
