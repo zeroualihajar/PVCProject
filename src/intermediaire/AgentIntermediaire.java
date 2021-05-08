@@ -28,11 +28,9 @@ public class AgentIntermediaire extends Agent {
 
         // l'ajout d'un  CyclicBehaviour pour afficher un message à chaque fois qu'il s'execute
         comportementparallele.addSubBehaviour(new CyclicBehaviour() {
-            private int conteurRep;
 
             @Override
             public void action() {
-                ++conteurRep;
 
                 //Préparation du template pour recevoir des messages
                 MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("Deplacer"));
