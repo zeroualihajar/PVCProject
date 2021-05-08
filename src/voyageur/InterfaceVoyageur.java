@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import jade.gui.GuiEvent;
+import Outils.PVC;
 import Outils.Ville;
 
 public class InterfaceVoyageur extends JFrame {
@@ -22,7 +23,14 @@ public class InterfaceVoyageur extends JFrame {
 	public JPanel mapPanel;
 	public MapPanel map;
 	
+	private Ville villes[];
+	private PVC pvc = new PVC();
+	
+	
 	private AgentVoyageur agentVoyageur;
+	
+	
+
 
 	/**
 	 * Launch the application.
@@ -72,7 +80,7 @@ public class InterfaceVoyageur extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("On va commencer le calcul :)");
 				GuiEvent gev = new GuiEvent(contentPane.getUI(), 1);
-				List<Ville> villes = map.villes;
+				List<Ville> villes = map.getVilles();
 				java.util.Map<String, Object> params = new HashMap<>();
 				params.put("VillesV1", villes);
 
@@ -102,4 +110,30 @@ public class InterfaceVoyageur extends JFrame {
 		 * paintVilles(); repaint(); } });
 		 */
 	}
+
+	public Ville[] getVilles() {
+		return villes;
+	}
+
+	public void setVilles(Ville[] villes) {
+		this.villes = villes;
+	}
+
+	public PVC getPvc() {
+		return pvc;
+	}
+
+	public void setPvc(PVC pvc) {
+		this.pvc = pvc;
+	}
+
+	public AgentVoyageur getAgentVoyageur() {
+		return agentVoyageur;
+	}
+
+	public void setAgentVoyageur(AgentVoyageur agentVoyageur) {
+		this.agentVoyageur = agentVoyageur;
+	}
+	
+	
 }

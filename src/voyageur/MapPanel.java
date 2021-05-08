@@ -19,14 +19,22 @@ import Outils.Ville;
 public class MapPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	public List<Ville> villes = new ArrayList<Ville>();
-	public List<Ville> chemins = new ArrayList<Ville>();//Route
+	private List<Ville> villes = new ArrayList<Ville>();
+	private List<Ville> chemins = new ArrayList<Ville>();//Route
 
 	public Image imageVille;
 	public int WIDTH_MAP = 500;
 	public int HEIGHT_MAP = 300;
 	public Image imageBackground;
-
+	
+	private boolean plusCourt=false;
+	private int etapeActuelle;
+	
+	private List<Ville> distances = new ArrayList<Ville>();
+	
+	
+	
+	
 	/**
 	 * Create the panel.
 	 */
@@ -128,4 +136,48 @@ public class MapPanel extends JPanel {
 			g.drawLine(x1, y1, x2, y2);
 		}
 	}
+
+	public List<Ville> getVilles() {
+		return villes;
+	}
+
+	public void setVilles(List<Ville> villes) {
+		this.villes = villes;
+	}
+
+	public List<Ville> getChemins() {
+		return chemins;
+	}
+
+	public void setChemins(List<Ville> chemins) {
+		this.chemins = chemins;
+	}
+
+	public boolean isPlusCourt() {
+		return plusCourt;
+	}
+
+	public void setPlusCourt(boolean plusCourt) {
+		this.plusCourt = plusCourt;
+	}
+	
+	public int getEtapeActuelle() {
+		return etapeActuelle;
+	}
+
+	public void setEtapeActuelle(int etapeActuelle) {
+		this.etapeActuelle = etapeActuelle;
+	}
+
+	public List<Ville> getDistances() {
+		return distances;
+	}
+
+	public void setDistances(List<Ville> distances) {
+		this.distances = distances;
+	}
+	
+	
+	
+	
 }

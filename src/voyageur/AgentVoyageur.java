@@ -1,15 +1,26 @@
 package voyageur;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 import Outils.Ville;
+import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.ParallelBehaviour;
 import jade.gui.GuiAgent;
+import jade.gui.GuiEvent;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import jade.lang.acl.UnreadableException;
+
 
 public class AgentVoyageur extends GuiAgent {
+
+	/* La classe AgentVoyageur ser a demarrer l'agent voyageur et effectuer l'ensemble des options que nous avons lui deja offrir */
+	
 	
 	private voyageur.InterfaceVoyageur interfaceAgent;
 	
@@ -18,7 +29,7 @@ public class AgentVoyageur extends GuiAgent {
 		System.out.println("Bienvenu ! C'est le voyageur Agent");
 		
 		interfaceAgent = new voyageur.InterfaceVoyageur();
-		interfaceAgent.createAndDisplay();
+		interfaceAgent.setVisible(true);
 		interfaceAgent.setAgentVoyageur(this);
 		
 		System.out.println("Le Voyageur est pret !");
@@ -50,19 +61,55 @@ public class AgentVoyageur extends GuiAgent {
 						
 				}
 				else if(acl2 != null) {
-					Ville[] villeOrdonnee = (Ville[]) acl2.getContentObject();
-					interfaceAgent.getBar().villes = villeOrdonnee;
-					interfaceAgent.mapPanel().setVillesroute(new ArrayList<Ville>(Arrays.asList(villeOrdonnee)));
 					
+					try {
+						Ville[] villeOrdonnee = (Ville[]) acl2.getContentObject();
+						interfaceAgent.setVilles(villeOrdonnee);
+						interfaceAgent.map.setDistances(new ArrayList<Ville>(Arrays.asList(villeOrdonnee)));
+						interfaceAgent.map.setPlusCourt(true);
+						
+						interfaceAgent.getPvc().setEtapeCourante(villeOrdonnee.length);
+						interfaceAgent.map.setEtapeActuelle(interfaceAgent.getPvc().getEtapeCourante());
+						
+						
+						System.out.println("L'etapae actuelle : " +interfaceAgent.getPvc().getEtapeCourante());
+						
+						interfaceAgent.map.repaint();
+					} catch(UnreadableException ex) {
+						System.out.println(ex);
+					}
 					
 				}
+				else
+					block();
 				
 			}
-		}
-				
-				
-				);
-		
+		});
 	}
-
+	
+	@Override
+	protected void onGuiEvent(GuiEvent event) {
+		switch (event.getType()) {
+		case 1:
+			System.out.println("On Gui Event");
+			Map<String, Object> params = (Map<String, Object>) event.getParameter(0);
+			
+			List<Ville> villes = (List<Ville>)params.get("v1");
+			ACLMessage aclMessage = new ACLMessage(ACLMessage.REQUEST);
+			aclMessage.addReceiver(new AID("intermediaire", AID.ISLOCALNAME));
+			
+			try {
+				aclMessage.setContentObject((Serializable) villes);
+			} catch (IOException ex) {
+				System.out.println(ex);
+			}
+			aclMessage.setOntology("ça marche");
+			send(aclMessage);
+			 
+			break;
+			
+			default:
+				break;
+				
+		}}
 }
