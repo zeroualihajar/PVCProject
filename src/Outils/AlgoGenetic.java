@@ -72,7 +72,7 @@ public class AlgoGenetic {
 		Solutions tournoi =  new Solutions(this.tailleTournoi);
 		
 		//melanger le contenu des solutions créer aléatoirement pour commençer le tournoi 
-		solutions.shuffle();
+		solutions.Melanger();
 		
 		for(int i = 0; i < this.tailleTournoi; i++)
 		{

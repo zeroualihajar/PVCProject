@@ -97,7 +97,7 @@ public class Solutions {
 	
 	
 	//----- Melanger l'enseble des solutions d'une maniere aleatoire
-	public void shuffle() {
+	public void Melanger() {
 		Random random = new Random();
 		for(int i = this.taille() - 1; i > 0; i--) {
 			
