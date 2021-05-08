@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import outils.Ville;
+import Outils.Ville;
 
 public class MapPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -93,8 +93,8 @@ public class MapPanel extends JPanel {
 
 	/* ----- Dessin des villes ----- */
 	public void paintVille(Graphics2D g, Ville ville) {
-		int x = ville.getPosX();
-		int y = ville.getPosY();
+		int x = (int) ville.getPosX();
+		int y = (int) ville.getPosY();
 //		int centerX = this.VilleImageCenter.width;
 //		int centerY = this.VilleImageCenter.height;
 
@@ -118,10 +118,10 @@ public class MapPanel extends JPanel {
 	/* ----- Dessin d'une route entre deux villes ----- */
 	public void paintChemin(Graphics2D g, Ville ville1, Ville ville2) {
 		if (ville1 != null && ville2 != null) {
-			int x1 = ville1.getPosX();
-			int y1 = ville1.getPosY();
-			int x2 = ville2.getPosX();
-			int y2 = ville2.getPosY();
+			int x1 = (int) ville1.getPosX();
+			int y1 = (int) ville1.getPosY();
+			int x2 = (int) ville2.getPosX();
+			int y2 = (int) ville2.getPosY();
 
 			g.setColor(Color.RED);
 			g.setStroke(new BasicStroke(2));
