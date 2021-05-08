@@ -77,9 +77,9 @@ public class PVC {
 			//--- score du chemin à partir de la solution ---
 			Distance d = new Distance(sol.CheminApte(0), villes);
 			
-			sol = aGenit.crossoverPopulation(sol);
+			sol = aGenit.crossoverSolution(sol);
 			
-			sol = aGenit.muterPopulation(sol);
+			sol = aGenit.muterSolution(sol);
 			
 			//--- on définit le score du chemin ---
 			aGenit.definitScoreChemin(sol, villes);

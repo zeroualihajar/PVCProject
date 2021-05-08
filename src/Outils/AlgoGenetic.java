@@ -1,5 +1,7 @@
 package Outils;
 
+import java.util.Arrays;
+
 public class AlgoGenetic {
 
 	private int nbreSolution;
@@ -80,12 +82,101 @@ public class AlgoGenetic {
 			//tournoi.setChemin(i, cheminTournoi);
 		}
 		
-		return tournoi.getChemin(0);
+		return tournoi.CheminApte(0);
 	}
 	
+	public Solutions crossoverSolution(Solutions solutions)
+	{
+		Solutions nouvSolutions = new Solutions(solutions.taille());
+		
+		
+		for(int solIndex = 0; solIndex < nouvSolutions.taille() ; solIndex++)
+		{
+			Chemin parent1 = solutions.CheminApte(solIndex);
+			
+			if(this.tauxCrossover > Math.random() &&  solIndex >= this.nbreElitism)
+			{
+				Chemin parent2 = this.select(solutions);
+				
+				int villeParcourus[] = new int[parent1.getnbreVilleParcourus()];
+				Arrays.fill(villeParcourus, -1);
+				Chemin enfant = new Chemin(villeParcourus);
+				
+				
+				int substrpos1 = (int)(Math.random() * parent1.getnbreVilleParcourus());
+				int substrpos2 = (int)(Math.random() * parent1.getnbreVilleParcourus());
+			
+				final int debutPos = Math.min(substrpos1, substrpos2);
+				final int finPos = Math.max(substrpos1, substrpos2);
+				
+				for(int i = debutPos; i < finPos ; i++)
+				{
+					enfant.setVille(i, parent1.getVille(i));
+				}
+				
+				
+				for(int i = 0; i < parent2.getnbreVilleParcourus(); i++)
+				{
+					int parent2Ville = i + finPos;
+					if(parent2Ville >= parent2.getnbreVilleParcourus()) {
+						parent2Ville -= parent2.getnbreVilleParcourus();
+					}
+					
+					if(enfant.verifierVille(parent2.getVille(parent2Ville)) == false)
+					{
+						
+						for (int j = 0; j < enfant.getnbreVilleParcourus(); j++)
+						{
+							if(enfant.getVille(j) == -1)
+							{
+								enfant.setVille(j, parent2.getVille(parent2Ville));
+								break;
+							}
+						}
+					}
+				}
+				
+				nouvSolutions.setChemin(enfant, solIndex);
+			}
+			else {
+					 nouvSolutions.setChemin(parent1, solIndex);
+				}
+			}
+		return nouvSolutions;
+		}
+
 	
-	
-	
+
+	public Solutions muterSolution(Solutions solutions)
+	{
+		Solutions nouvSolutions = new Solutions(this.nbreSolution);
+		
+		for(int solIndex = 0; solIndex < solutions.taille(); solIndex++)
+		{
+			Chemin chemin = solutions.CheminApte(solIndex);
+			
+			if(solIndex >= this.nbreElitism)
+			{
+				for(int indexVille = 0; indexVille < chemin.getnbreVilleParcourus(); indexVille++ )
+				{
+					if(this.tauxMutation > Math.random())
+					{
+						
+						int newPosVille = (int)(Math.random() * chemin.getnbreVilleParcourus());
+						
+						int ville1 = chemin.getVille(newPosVille);
+						int ville2 = chemin.getVille(indexVille);
+						
+						chemin.setVille(ville1, indexVille);
+						chemin.setVille(ville2, indexVille);
+					}
+				}
+			}
+			nouvSolutions.setChemin(chemin, solIndex);
+		}
+		
+		return nouvSolutions;
+	}
 	
 	
 	

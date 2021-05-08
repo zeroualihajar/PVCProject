@@ -49,6 +49,9 @@ public class Chemin {
 		this.score = score;
 	}
 
+	public int getnbreVilleParcourus() {
+		return this.villeParcourus.length;
+	}
 	@Override
 	public String toString() {
 		return "Chemin [villeParcourus=" + Arrays.toString(villeParcourus) + ", score=" + score + "]";
@@ -63,6 +66,15 @@ public class Chemin {
 		
 		
 		return false;
+	}
+	
+	public void setVille(int offset, int gene) {
+		this.villeParcourus[offset] = gene;
+	}
+
+	
+	public int getVille(int offset) {
+		return this.villeParcourus[offset];
 	}
 	
 	
