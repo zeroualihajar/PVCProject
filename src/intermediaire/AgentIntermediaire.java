@@ -19,46 +19,46 @@ public class AgentIntermediaire extends Agent {
     @Override
     protected void setup(){
 
-        System.out.println("L'agent intermédiaire est démarré");
+        System.out.println("L'agent intermï¿½diaire est dï¿½marrï¿½");
 
-        //création d'une instance de ParallelBehaviour pour exécuter plusieurs Behaviours en parallèle
+        //crï¿½ation d'une instance de ParallelBehaviour pour exï¿½cuter plusieurs Behaviours en parallï¿½le
         ParallelBehaviour comportementparallele = new ParallelBehaviour();
         //L'ajout de sous-Behaviour
         addBehaviour(comportementparallele);
 
-        // l'ajout d'un  CyclicBehaviour pour afficher un message à chaque fois qu'il s'execute
+        // l'ajout d'un  CyclicBehaviour pour afficher un message ï¿½ chaque fois qu'il s'execute
         comportementparallele.addSubBehaviour(new CyclicBehaviour() {
 
             @Override
             public void action() {
 
-                //Préparation du template pour recevoir des messages
-                MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("Deplacer"));
+                //Prï¿½paration du template pour recevoir des messages
+                MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("ï¿½a marche"));
                
                 //Recevoir les messages des autres agents
                 ACLMessage reponse1 = receive(mt1);
-                System.out.println("Rec : " +reponse1);
+                System.out.println("mt1 : " +mt1);
                 
-                MessageTemplate mt2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Calculer le chemin optimal"));
+                System.out.println("Reception1 : " +reponse1);
+                
+                MessageTemplate mt2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Calcul du chemin optimal"));
                 ACLMessage reponse2 = receive(mt2);
-                
-                System.out.println("reponse2 : "+reponse2);
-
+                System.out.println("Reception2 : " +reponse2);
                 if(reponse1 != null){
                     try{
-                        //On récupère le contenu de reponse1 (ACLMessage)
+                        //On rï¿½cupï¿½re le contenu de reponse1 (ACLMessage)
                         List<Ville> villes = (List<Ville>)reponse1.getContentObject();
 
                         ACLMessage reponse3 = new ACLMessage(ACLMessage.REQUEST);
 
-                        //Modification des paramètres de la requete ACLMessage
+                        //Modification des paramï¿½tres de la requete ACLMessage
                         reponse3.addReceiver(new AID("Calculateur", AID.ISLOCALNAME));
                         //On met la liste des ville dans le message
                         reponse3.setContentObject((Serializable) villes);
-                        reponse3.setOntology("Calcul...");
+                        reponse3.setOntology("Calcul");
                         //Envoi de message
                         send(reponse3);
-
+                        System.out.println("Reception :hna hna  " +reponse1);
                     } catch (UnreadableException e) {
                         e.printStackTrace();
                     }catch (IOException e) {
@@ -74,11 +74,11 @@ public class AgentIntermediaire extends Agent {
 
                         ACLMessage reponse3 = new ACLMessage(ACLMessage.REQUEST);
 
-                        //Modification des paramètres de la requete ACLMessage
+                        //Modification des paramï¿½tres de la requete ACLMessage
                         reponse3.addReceiver(new AID("Voyageur", AID.ISLOCALNAME));
-                        //On met le tableau des villes ordonnées dans le message
+                        //On met le tableau des villes ordonnï¿½es dans le message
                         reponse3.setContentObject((Serializable) villesOrdonnees);
-                        reponse3.setOntology("Tableau des villes ordonnées");
+                        reponse3.setOntology("Tableau des villes ordonnï¿½es");
                         //Envoi de message
                         send(reponse3);
 

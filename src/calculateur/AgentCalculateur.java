@@ -36,7 +36,7 @@ public class AgentCalculateur extends Agent {
             public void action() {
 
                 //Préparation du template pour recevoir des messages
-                MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("Calculer"));
+                MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("Calcul"));
                 //Recevoir les messages des autres agents
                 ACLMessage reponse1 = receive(mt1);
 

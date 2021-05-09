@@ -22,11 +22,12 @@ public class Chemin {
 	{
 		//initialisation du tableaux
 		int[] villerempli = new int[nbreVilleParcourus];
-		
-		
+			System.out.println("nbreVilleParcourus "+nbreVilleParcourus);
+			villeParcourus =new int[nbreVilleParcourus];
 		//créer un chemin aléatoire  
 		for(int ville = 0; ville < nbreVilleParcourus; ville++)
 		{
+		
 			villeParcourus[ville] = ville; 
 		}
 		
