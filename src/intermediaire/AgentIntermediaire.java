@@ -19,7 +19,7 @@ public class AgentIntermediaire extends Agent {
     @Override
     protected void setup(){
 
-        System.out.println("L'agent interm�diaire est d�marr�");
+        System.out.println("L'agent intermediaire est demarree");
 
         //cr�ation d'une instance de ParallelBehaviour pour ex�cuter plusieurs Behaviours en parall�le
         ParallelBehaviour comportementparallele = new ParallelBehaviour();
@@ -33,7 +33,7 @@ public class AgentIntermediaire extends Agent {
             public void action() {
 
                 //Pr�paration du template pour recevoir des messages
-                MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("�a marche"));
+                MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("ca marche"));
                
                 //Recevoir les messages des autres agents
                 ACLMessage reponse1 = receive(mt1);
@@ -58,7 +58,6 @@ public class AgentIntermediaire extends Agent {
                         reponse3.setOntology("Calcul");
                         //Envoi de message
                         send(reponse3);
-                        System.out.println("Reception :hna hna  " +reponse1);
                     } catch (UnreadableException e) {
                         e.printStackTrace();
                     }catch (IOException e) {
@@ -78,7 +77,7 @@ public class AgentIntermediaire extends Agent {
                         reponse3.addReceiver(new AID("Voyageur", AID.ISLOCALNAME));
                         //On met le tableau des villes ordonn�es dans le message
                         reponse3.setContentObject((Serializable) villesOrdonnees);
-                        reponse3.setOntology("Tableau des villes ordonn�es");
+                        reponse3.setOntology("Tableau des villes ordonnees");
                         //Envoi de message
                         send(reponse3);
 

@@ -44,11 +44,11 @@ public class AgentVoyageur extends GuiAgent {
 			public void action() {
 				++compteur;
 				
-				MessageTemplate message1  = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("�a marche"));
+				MessageTemplate message1  = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("ca marche"));
 				ACLMessage acl1 = receive(message1);
 				
 				System.out.print("\n message 1: "+ message1);
-				MessageTemplate message2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Tableau des villes ordonn�es"));
+				MessageTemplate message2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Tableau des villes ordonnees"));
 				ACLMessage acl2 = receive(message2);
 				System.out.print("\n message 2: "+ message2);
 				
@@ -73,7 +73,7 @@ public class AgentVoyageur extends GuiAgent {
 						interfaceAgent.map.setEtapeActuelle(interfaceAgent.getPvc().getEtapeCourante());
 						
 						
-						System.out.println("L'�tape actuelle : " +interfaceAgent.getPvc().getEtapeCourante());
+						System.out.println("L'etape actuelle : " +interfaceAgent.getPvc().getEtapeCourante());
 						
 						interfaceAgent.map.repaint();
 					} catch(UnreadableException ex) {
@@ -104,12 +104,11 @@ public class AgentVoyageur extends GuiAgent {
 			
 			try {
 				aclMessage.setContentObject((Serializable) villes);
-				System.out.println("Content " +aclMessage.getContent());
 				
 			} catch (IOException ex) {
 				System.out.println(ex);
 			}
-			aclMessage.setOntology("�a marche");
+			aclMessage.setOntology("ca marche");
 			send(aclMessage);
 			System.out.println(aclMessage); 
 			break;
