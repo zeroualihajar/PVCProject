@@ -20,7 +20,6 @@ public class ConteneurIntermediaire {
             AgentContainer agentContainer = runtime.createAgentContainer(profileImpl);
             //On créé l'instance de l'agent
             AgentController agentController = agentContainer.createNewAgent("Intermediaire", AgentIntermediaire.class.getName(), new Object[]{});
-
             //Démarré l'instance de l'agent
             agentController.start();
 

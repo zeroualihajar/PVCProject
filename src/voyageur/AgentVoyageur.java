@@ -44,11 +44,11 @@ public class AgentVoyageur extends GuiAgent {
 			public void action() {
 				++compteur;
 				
-				MessageTemplate message1  = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("Il marche"));
+				MessageTemplate message1  = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("ï¿½a marche"));
 				ACLMessage acl1 = receive(message1);
 				
 				System.out.print("\n message 1: "+ message1);
-				MessageTemplate message2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Tableau des villes ordonnées"));
+				MessageTemplate message2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Tableau des villes ordonnï¿½es"));
 				ACLMessage acl2 = receive(message2);
 				System.out.print("\n message 2: "+ message2);
 				
@@ -73,7 +73,7 @@ public class AgentVoyageur extends GuiAgent {
 						interfaceAgent.map.setEtapeActuelle(interfaceAgent.getPvc().getEtapeCourante());
 						
 						
-						System.out.println("L'étape actuelle : " +interfaceAgent.getPvc().getEtapeCourante());
+						System.out.println("L'ï¿½tape actuelle : " +interfaceAgent.getPvc().getEtapeCourante());
 						
 						interfaceAgent.map.repaint();
 					} catch(UnreadableException ex) {
@@ -96,21 +96,20 @@ public class AgentVoyageur extends GuiAgent {
 			Map<String, Object> params = (Map<String, Object>) event.getParameter(0);
 			
 			List<Ville> villes = (List<Ville>)params.get("v1");
+			
+			System.out.println("Villes : "+villes.toString());
+			
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.REQUEST);
 			aclMessage.addReceiver(new AID("Intermediaire", AID.ISLOCALNAME));
 			
-			System.out.println("ACL Message : "+aclMessage);
-			System.out.println("101");
 			try {
 				aclMessage.setContentObject((Serializable) villes);
-				System.out.println("104");
+				System.out.println("Content " +aclMessage.getContent());
+				
 			} catch (IOException ex) {
-				System.out.println("106");
 				System.out.println(ex);
 			}
-			System.out.println("109");
-			aclMessage.setOntology("ça marche");
-			System.out.println("111");
+			aclMessage.setOntology("ï¿½a marche");
 			send(aclMessage);
 			System.out.println(aclMessage); 
 			break;
