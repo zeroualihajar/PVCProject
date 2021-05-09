@@ -44,12 +44,15 @@ public class AgentVoyageur extends GuiAgent {
 			public void action() {
 				++compteur;
 				
-				MessageTemplate message1  = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("Il marche"));
+				MessageTemplate message1  = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("ça marche"));
 				ACLMessage acl1 = receive(message1);
+				
+				System.out.println("ACL1 : "+acl1);
 				
 				MessageTemplate message2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Ordonner les villes"));
 				ACLMessage acl2 = receive(message2);
 				
+				System.out.println("ACL2 : " +acl2);
 				
 				if(acl1 !=null) {
 					System.out.println("L'emetteur de message : " +acl1.getSender());
@@ -91,27 +94,27 @@ public class AgentVoyageur extends GuiAgent {
 	protected void onGuiEvent(GuiEvent event) {
 		switch (event.getType()) {
 		case 1:
-			System.out.println("On Gui Event");
+			System.out.println("En Gui Event");
 			Map<String, Object> params = (Map<String, Object>) event.getParameter(0);
 			
 			List<Ville> villes = (List<Ville>)params.get("v1");
+			
+			System.out.println("Villes : "+villes.toString());
+			
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.REQUEST);
 			aclMessage.addReceiver(new AID("Intermediaire", AID.ISLOCALNAME));
 			
-			System.out.println("ACL Message : "+aclMessage);
-			System.out.println("101");
 			try {
 				aclMessage.setContentObject((Serializable) villes);
-				System.out.println("104");
+				System.out.println("Content " +aclMessage.getContent());
+				
 			} catch (IOException ex) {
-				System.out.println("106");
 				System.out.println(ex);
 			}
-			System.out.println("109");
 			aclMessage.setOntology("ça marche");
-			System.out.println("111");
 			send(aclMessage);
 			 
+			System.out.println("Test : "+aclMessage);
 			break;
 			
 			default:

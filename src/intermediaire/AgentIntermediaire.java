@@ -37,10 +37,12 @@ public class AgentIntermediaire extends Agent {
                
                 //Recevoir les messages des autres agents
                 ACLMessage reponse1 = receive(mt1);
-                System.out.println("Reception : " +reponse1);
+                System.out.println("Rec : " +reponse1);
                 
                 MessageTemplate mt2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Calculer le chemin optimal"));
                 ACLMessage reponse2 = receive(mt2);
+                
+                System.out.println("reponse2 : "+reponse2);
 
                 if(reponse1 != null){
                     try{
@@ -66,6 +68,8 @@ public class AgentIntermediaire extends Agent {
                 else if(reponse2 != null){
                     try {
 
+
+                        System.out.println("rec : "+reponse2);
                         Ville[] villesOrdonnees = (Ville[]) reponse2.getContentObject();
 
                         ACLMessage reponse3 = new ACLMessage(ACLMessage.REQUEST);
