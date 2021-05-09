@@ -15,6 +15,7 @@ public class Distance {
 		
 		//---- remplir la table des villes parcourues ----
 		for(int i=0; i < villesParcourues.length ; i++) {
+			System.out.println("villesParcourues[i] "+ villesParcourues[i]);
 			this.parcours[i] = villes[villesParcourues[i]];
 		}
 		

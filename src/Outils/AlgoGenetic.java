@@ -79,7 +79,7 @@ public class AlgoGenetic {
 		for(int i = 0; i < this.tailleTournoi; i++)
 		{
 			Chemin cheminTournoi = solutions.getChemin(i);
-			//tournoi.setChemin(i, cheminTournoi);
+			tournoi.setChemin(cheminTournoi, i);
 		}
 		
 		return tournoi.CheminApte(0);
@@ -168,7 +168,7 @@ public class AlgoGenetic {
 						int ville2 = chemin.getVille(indexVille);
 						
 						chemin.setVille(ville1, indexVille);
-						chemin.setVille(ville2, indexVille);
+						chemin.setVille(ville2, newPosVille);
 					}
 				}
 			}
