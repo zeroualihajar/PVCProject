@@ -48,7 +48,7 @@ public class AgentVoyageur extends GuiAgent {
 				ACLMessage acl1 = receive(message1);
 				
 				System.out.print("\n message 1: "+ message1);
-				MessageTemplate message2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Ordonner les villes"));
+				MessageTemplate message2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Tableau des villes ordonnées"));
 				ACLMessage acl2 = receive(message2);
 				System.out.print("\n message 2: "+ message2);
 				
@@ -73,7 +73,7 @@ public class AgentVoyageur extends GuiAgent {
 						interfaceAgent.map.setEtapeActuelle(interfaceAgent.getPvc().getEtapeCourante());
 						
 						
-						System.out.println("L'etapae actuelle : " +interfaceAgent.getPvc().getEtapeCourante());
+						System.out.println("L'étape actuelle : " +interfaceAgent.getPvc().getEtapeCourante());
 						
 						interfaceAgent.map.repaint();
 					} catch(UnreadableException ex) {
@@ -112,7 +112,7 @@ public class AgentVoyageur extends GuiAgent {
 			aclMessage.setOntology("ça marche");
 			System.out.println("111");
 			send(aclMessage);
-			System.out.println("aclMessage"); 
+			System.out.println(aclMessage); 
 			break;
 			
 			default:

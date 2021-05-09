@@ -33,15 +33,17 @@ public class AgentIntermediaire extends Agent {
             public void action() {
 
                 //Préparation du template pour recevoir des messages
-                MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("Deplacer"));
+                MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("ça marche"));
                
                 //Recevoir les messages des autres agents
                 ACLMessage reponse1 = receive(mt1);
-                System.out.println("Reception : " +reponse1);
+                System.out.println("mt1 : " +mt1);
                 
-                MessageTemplate mt2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Calculer le chemin optimal"));
+                System.out.println("Reception1 : " +reponse1);
+                
+                MessageTemplate mt2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Calcul du chemin optimal"));
                 ACLMessage reponse2 = receive(mt2);
-
+                System.out.println("Reception2 : " +reponse2);
                 if(reponse1 != null){
                     try{
                         //On récupère le contenu de reponse1 (ACLMessage)
@@ -53,7 +55,7 @@ public class AgentIntermediaire extends Agent {
                         reponse3.addReceiver(new AID("Calculateur", AID.ISLOCALNAME));
                         //On met la liste des ville dans le message
                         reponse3.setContentObject((Serializable) villes);
-                        reponse3.setOntology("Calcul...");
+                        reponse3.setOntology("Calcul");
                         //Envoi de message
                         send(reponse3);
                         System.out.println("Reception :hna hna  " +reponse1);
