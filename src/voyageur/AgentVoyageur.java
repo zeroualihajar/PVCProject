@@ -96,14 +96,20 @@ public class AgentVoyageur extends GuiAgent {
 			
 			List<Ville> villes = (List<Ville>)params.get("v1");
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.REQUEST);
-			aclMessage.addReceiver(new AID("intermediaire", AID.ISLOCALNAME));
+			aclMessage.addReceiver(new AID("Intermediaire", AID.ISLOCALNAME));
 			
+			System.out.println("ACL Message : "+aclMessage);
+			System.out.println("101");
 			try {
 				aclMessage.setContentObject((Serializable) villes);
+				System.out.println("104");
 			} catch (IOException ex) {
+				System.out.println("106");
 				System.out.println(ex);
 			}
+			System.out.println("109");
 			aclMessage.setOntology("ça marche");
+			System.out.println("111");
 			send(aclMessage);
 			 
 			break;

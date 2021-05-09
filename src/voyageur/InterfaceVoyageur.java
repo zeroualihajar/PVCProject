@@ -104,7 +104,7 @@ public class InterfaceVoyageur extends JFrame {
 
 		/* ----- Bouton revenir en arri�re ----- */
 		JButton undoBtn = new JButton("Precedent");
-		undoBtn.setIcon(new ImageIcon(InterfaceVoyageur.class.getResource("/images/undo.png")));
+		undoBtn.setIcon(new ImageIcon(InterfaceVoyageur.class.getResource("/images/redoo.png")));
 		undoBtn.setForeground(new Color(245, 255, 250));
 		undoBtn.setBackground(new Color(58, 109, 214));
 		undoBtn.setBorder(BorderFactory.createLineBorder(new Color(63, 54, 151), 1));
@@ -123,7 +123,7 @@ public class InterfaceVoyageur extends JFrame {
 
 		/* ----- Bouton revenir en avant ----- */
 		JButton redoBtn = new JButton("Suivant");
-		redoBtn.setIcon(new ImageIcon(InterfaceVoyageur.class.getResource("/images/redo.png")));
+		redoBtn.setIcon(new ImageIcon(InterfaceVoyageur.class.getResource("/images/undoo.png")));
 		redoBtn.setForeground(new Color(245, 245, 220));
 		redoBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
 		redoBtn.setBorder(BorderFactory.createLineBorder(new Color(63, 54, 151), 1));
