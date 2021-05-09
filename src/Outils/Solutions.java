@@ -10,7 +10,7 @@ public class Solutions {
 	
 	private Chemin chemins[];     //---- liste des chemins possibles
 	private double score = -1;    //---- represente le fitness de chaque chemin
-	
+
 	
 
 	//------ Constructer -> Initialisation de l'ensembles des solutions (Chemins)

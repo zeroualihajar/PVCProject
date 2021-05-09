@@ -1,6 +1,8 @@
 package Outils;
 
-public class Ville {
+import java.io.Serializable;
+
+public class Ville implements Serializable{
 
 	private int idVille;
 	private String nomVille;

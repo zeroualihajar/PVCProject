@@ -34,9 +34,11 @@ public class AgentIntermediaire extends Agent {
 
                 //Préparation du template pour recevoir des messages
                 MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("Deplacer"));
+               
                 //Recevoir les messages des autres agents
                 ACLMessage reponse1 = receive(mt1);
-
+                System.out.println("Reception : " +reponse1);
+                
                 MessageTemplate mt2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Calculer le chemin optimal"));
                 ACLMessage reponse2 = receive(mt2);
 

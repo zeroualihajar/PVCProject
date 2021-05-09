@@ -9,9 +9,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Outils.Ville;
@@ -19,52 +19,52 @@ import Outils.Ville;
 public class MapPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	private List<Ville> villes = new ArrayList<Ville>();
-	private List<Ville> distances = new ArrayList<Ville>();
+	private List<Ville> villes = new ArrayList<Ville>(); // Liste des villes 
+	private List<Ville> distances = new ArrayList<Ville>(); // Liste des distances entres les villes
+	private char[] nomsVilles = new char[26];
 	private boolean plusCourt = false;
 	private int etapeActuelle;
 
+	public Image imageBackground;
 	public Image imageVille;
 	public int WIDTH_MAP = 500;
 	public int HEIGHT_MAP = 300;
-	public Image imageBackground;
 
 	/**
 	 * Create the panel.
 	 */
+	/* ----- Constructeur ----- */
 	public MapPanel() {
 		setBackground(new Color(245, 255, 250));
 		this.setBounds(0, 0, WIDTH_MAP, HEIGHT_MAP);
 		setLayout(null);
 
+		for(int i = 0; i < 25; i++) {
+			this.nomsVilles[i] = (char)('a' + new Random().nextInt(26));
+		}
+		
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(final MouseEvent e) {
-				String retour = JOptionPane.showInputDialog("Saisir le nom de la ville : ");
-				final int x = e.getX();
-				final int y = e.getY();
+				int x = e.getX();
+				int y = e.getY();
 
 				try {
-					// imageVille = new
-					// ImageIcon(MapPanel.class.getResource("/images/city"+(villes.get(villes.size()-1).getIdVille()+1)+".png")).getImage();//ImageIO.read(new
-					// File("/images/" + "corona.jpeg"));
-					imageVille = new ImageIcon(MapPanel.class.getResource("/images/city1.png")).getImage();
-					// System.out.println("/images/city"+(villes.get(villes.size()-1).getIdVille()+1)+".png");
-//					this.VilleImageCenter = new Dimension(this.VilleImage.getWidth() / 2, this.VilleImage.getHeight() / 2);
+					imageVille = new ImageIcon(MapPanel.class.getResource("/images/city5.png")).getImage();
 				} catch (final Exception ex) {
 					imageVille = null;
-//					this.VilleImageCenter = new Dimension(0, 0);
 				}
 
-				villes.add(new Ville(villes.size() + 1, retour, x, y, false));
+				villes.add(new Ville(villes.size() + 1, Character.toString(nomsVilles[villes.size()]), x, y, false));
 
-				System.out.println("Ville : " + retour + "\n(x,y) : (" + e.getX() + ", " + e.getY()
-						+ "\nNbre de villes : " + villes.size() + "\n");
+				System.out.println("Ville : " + Character.toString(nomsVilles[villes.size()]) + "\n(x,y) : (" + e.getX() + ", " + e.getY()
+						+ ")\nNbre de villes : " + villes.size() + "\n");
 				repaint();
 			}
 		});
 	}
 
+	/* ----- Getters & Setters ----- */
 	public List<Ville> getVilles() {
 		return villes;
 	}
@@ -113,14 +113,9 @@ public class MapPanel extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponent(g2d);
 
-		this.imageBackground = new ImageIcon(MapPanel.class.getResource("/images/map.png")).getImage();
-
-//		int width = imageBackground.getWidth(this)/2;
-//		int height = imageBackground.getHeight(this)/2;
+		this.imageBackground = new ImageIcon(MapPanel.class.getResource("/images/maroc5.jpg")).getImage();
 
 		if (imageBackground != null) {
-//			int x = this.getParent().getWidth() / 2 - width;
-//			int y = this.getParent().getHeight() / 2 - height;
 			g.drawImage(imageBackground, 0, 0, this);
 		}
 	}
@@ -129,27 +124,16 @@ public class MapPanel extends JPanel {
 	public void paintVille(Graphics2D g, Ville ville) {
 		int x = (int) ville.getPosX();
 		int y = (int) ville.getPosY();
-//		int centerX = this.VilleImageCenter.width;
-//		int centerY = this.VilleImageCenter.height;
 
 		// Black background
 		g.setColor(Color.RED);
-		g.fillOval(x - 45, y - 25, 10 * 2, 10 * 2);
+		g.fillOval(x -20 , y-5, 1, 1);
 
-		// ville image
-		g.drawImage(imageVille, x - 45, y - 25, null);
-
-		// Number background
-//		g.setColor(Color.WHITE);
-//		g.fillOval(x + 3, y + 3, 14, 14);
-
-		// Number
-		g.setColor(Color.WHITE);
-
-		g.drawString(ville.getNomVille(), x + 1, y + 17);
+		/* ----- Image de la ville ----- */
+		g.drawImage(imageVille, x-20, y-35, null);
 	}
 
-	/* ----- Dessin d'une route entre deux villes ----- */
+	/* ----- Dessin d'une distance entre deux villes ----- */
 	public void paintDistance(Graphics2D g, Ville ville1, Ville ville2) {
 		if (ville1 != null && ville2 != null) {
 			int x1 = (int) ville1.getPosX();
@@ -163,11 +147,12 @@ public class MapPanel extends JPanel {
 		}
 	}
 
+	/* ----- Dessin du plus court chemin ----- */
 	public void paintPlusCourtDistance(Graphics2D g2d) {
 		List<Ville> mesDistances = this.distances;
 		for (int i = 0; i < mesDistances.size() - 1; i++) {
 			if (i >= etapeActuelle) {
-				System.out.println("bnj" + etapeActuelle + mesDistances.size());
+				System.out.println("Etape actuelle : " + etapeActuelle + mesDistances.size());
 				return;
 			}
 			paintDistance(g2d, mesDistances.get(i), mesDistances.get(i + 1));
