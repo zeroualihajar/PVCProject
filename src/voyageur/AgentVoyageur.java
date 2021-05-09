@@ -47,9 +47,10 @@ public class AgentVoyageur extends GuiAgent {
 				MessageTemplate message1  = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("Il marche"));
 				ACLMessage acl1 = receive(message1);
 				
+				System.out.print("\n message 1: "+ message1);
 				MessageTemplate message2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Ordonner les villes"));
 				ACLMessage acl2 = receive(message2);
-				
+				System.out.print("\n message 2: "+ message2);
 				
 				if(acl1 !=null) {
 					System.out.println("L'emetteur de message : " +acl1.getSender());
@@ -91,7 +92,7 @@ public class AgentVoyageur extends GuiAgent {
 	protected void onGuiEvent(GuiEvent event) {
 		switch (event.getType()) {
 		case 1:
-			System.out.println("On Gui Event");
+			System.out.println("En Gui Event");
 			Map<String, Object> params = (Map<String, Object>) event.getParameter(0);
 			
 			List<Ville> villes = (List<Ville>)params.get("v1");
@@ -111,7 +112,7 @@ public class AgentVoyageur extends GuiAgent {
 			aclMessage.setOntology("ça marche");
 			System.out.println("111");
 			send(aclMessage);
-			 
+			System.out.println("aclMessage"); 
 			break;
 			
 			default:

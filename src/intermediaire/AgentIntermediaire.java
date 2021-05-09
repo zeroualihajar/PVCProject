@@ -56,7 +56,7 @@ public class AgentIntermediaire extends Agent {
                         reponse3.setOntology("Calcul...");
                         //Envoi de message
                         send(reponse3);
-
+                        System.out.println("Reception :hna hna  " +reponse1);
                     } catch (UnreadableException e) {
                         e.printStackTrace();
                     }catch (IOException e) {
