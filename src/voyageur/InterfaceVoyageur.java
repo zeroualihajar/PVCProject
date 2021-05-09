@@ -86,14 +86,14 @@ public class InterfaceVoyageur extends JFrame {
 		getCheminBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
 		getCheminBtn.setForeground(new Color(255, 255, 255));
 		getCheminBtn.setBackground(new Color(205, 133, 63));
-//		getCheminBtn.setBorder(BorderFactory.createLineBorder(new Color(63, 54, 151), 1));
+		
 		getCheminBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("On va commencer le calcul :)");
 				GuiEvent gev = new GuiEvent(contentPane.getUI(), 1);
 				List<Ville> villes = map.getVilles();
 				java.util.Map<String, Object> params = new HashMap<>();
-				params.put("VillesV1", villes);
+				params.put("v1", villes);
 
 				gev.addParameter(params);
 				agentVoyageur.onGuiEvent(gev);
