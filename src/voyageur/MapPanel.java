@@ -50,7 +50,7 @@ public class MapPanel extends JPanel {
 				int y = e.getY();
 
 				try {
-					imageVille = new ImageIcon(MapPanel.class.getResource("/images/city6.png")).getImage();
+					imageVille = new ImageIcon(MapPanel.class.getResource("/images/city5.png")).getImage();
 				} catch (final Exception ex) {
 					imageVille = null;
 				}
@@ -113,7 +113,7 @@ public class MapPanel extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponent(g2d);
 
-		this.imageBackground = new ImageIcon(MapPanel.class.getResource("/images/maroc3.png")).getImage();
+		this.imageBackground = new ImageIcon(MapPanel.class.getResource("/images/maroc5.jpg")).getImage();
 
 		if (imageBackground != null) {
 			g.drawImage(imageBackground, 0, 0, this);
@@ -130,7 +130,7 @@ public class MapPanel extends JPanel {
 		g.fillOval(x -20 , y-5, 1, 1);
 
 		/* ----- Image de la ville ----- */
-		g.drawImage(imageVille, x-20, y-5, null);
+		g.drawImage(imageVille, x-20, y-35, null);
 	}
 
 	/* ----- Dessin d'une distance entre deux villes ----- */

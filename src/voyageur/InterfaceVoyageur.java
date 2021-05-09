@@ -63,7 +63,7 @@ public class InterfaceVoyageur extends JFrame {
 		contentPane = new JPanel();
 //		contentPane.setBackground(new Color(165, 214, 247));
 
-		contentPane.setBackground(new Color(0, 153, 204));
+		contentPane.setBackground(new Color(245, 222, 179));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -82,10 +82,10 @@ public class InterfaceVoyageur extends JFrame {
 
 		/* ----- Bouton pour calculer la solution ----- */
 		JButton getCheminBtn = new JButton("Calculer");
-		getCheminBtn.setIcon(new ImageIcon(InterfaceVoyageur.class.getResource("/images/calcul.png")));
+		getCheminBtn.setIcon(new ImageIcon(InterfaceVoyageur.class.getResource("/images/calc.png")));
 		getCheminBtn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		getCheminBtn.setForeground(new Color(255, 250, 250));
-		getCheminBtn.setBackground(new Color(218, 165, 32));
+		getCheminBtn.setForeground(new Color(255, 255, 255));
+		getCheminBtn.setBackground(new Color(205, 133, 63));
 //		getCheminBtn.setBorder(BorderFactory.createLineBorder(new Color(63, 54, 151), 1));
 		getCheminBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -99,7 +99,7 @@ public class InterfaceVoyageur extends JFrame {
 				agentVoyageur.onGuiEvent(gev);
 			}
 		});
-		getCheminBtn.setBounds(471, 108, 137, 39);
+		getCheminBtn.setBounds(471, 10, 137, 39);
 		contentPane.add(getCheminBtn);
 
 		/* ----- Bouton revenir en arri�re ----- */
@@ -118,7 +118,7 @@ public class InterfaceVoyageur extends JFrame {
 				map.repaint();
 			}
 		});
-		undoBtn.setBounds(471, 10, 137, 39);
+		undoBtn.setBounds(471, 71, 137, 39);
 		contentPane.add(undoBtn);
 
 		/* ----- Bouton revenir en avant ----- */
@@ -138,12 +138,12 @@ public class InterfaceVoyageur extends JFrame {
 				map.repaint();
 			}
 		});
-		redoBtn.setBounds(471, 59, 137, 39);
+		redoBtn.setBounds(471, 128, 137, 39);
 		contentPane.add(redoBtn);
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(InterfaceVoyageur.class.getResource("/images/icon.png")));
-		lblNewLabel.setBounds(471, 340, 137, 124);
+		lblNewLabel.setIcon(new ImageIcon(InterfaceVoyageur.class.getResource("/images/icon1.png")));
+		lblNewLabel.setBounds(493, 341, 137, 146);
 		contentPane.add(lblNewLabel);
 	}
 
