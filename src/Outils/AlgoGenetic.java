@@ -145,7 +145,7 @@ public class AlgoGenetic {
 		return nouvSolutions;
 		}
 
-	
+
 
 	public Solutions muterSolution(Solutions solutions)
 	{
@@ -177,6 +177,7 @@ public class AlgoGenetic {
 		
 		return nouvSolutions;
 	}
+
 	
 	
 	
