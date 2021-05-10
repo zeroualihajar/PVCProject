@@ -63,10 +63,12 @@ public class Ville implements Serializable{
 
 	// ------- distance entre deux villes
 	public double getDistance(Ville ville) {
+		
+		double deltaXSq = Math.pow((ville.getPosX() - this.posX), 2);
+		double deltaYSq = Math.pow((ville.getPosY() - this.posY), 2);
 
-		double x = Math.abs(this.posX - ville.getPosX());
-		double y = Math.abs(this.posY - ville.getPosY());
-		return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-	}
+		// Calculer le plus court chemin
+		double distance = Math.sqrt(Math.abs(deltaXSq + deltaYSq));
+		return distance;}
 
 }
