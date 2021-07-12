@@ -26,7 +26,7 @@ public class InterfaceVoyageur extends JFrame {
 
 	private JPanel contentPane;
 	public JPanel mapPanel;
-	public MapPanel map;
+	private MapPanel map;
 
 	private AgentVoyageur agentVoyageur;
 	private Ville villes[];
@@ -171,4 +171,14 @@ public class InterfaceVoyageur extends JFrame {
 	public void setAgentVoyageur(AgentVoyageur agentVoyageur) {
 		this.agentVoyageur = agentVoyageur;
 	}
+
+	public MapPanel getMap() {
+		return map;
+	}
+
+	public void setMap(MapPanel map) {
+		this.map = map;
+	}
+	
+	
 }

@@ -34,7 +34,6 @@ public class Solutions {
 			this.chemins[i] = chemin;
 			
 		}
-
 	}
 
 

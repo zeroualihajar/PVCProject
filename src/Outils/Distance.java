@@ -14,13 +14,15 @@ public class Distance {
 		this.parcours = new Ville[villes.length];
 		
 		//---- remplir la table des villes parcourues ----
-		for(int i=0; i < villesParcourues.length ; i++) {
+		for(int i=0; i < villesParcourues.length ; i++) 
+		{
+			
 			this.parcours[i] = villes[villesParcourues[i]];
 		}
-		
+	
 		
 	}
-
+	
 	//------ getters -------
 	public Ville[] getParcours() {
 		return parcours;
@@ -31,7 +33,7 @@ public class Distance {
 		if (this.distance > 0) {
 			return this.distance;
 		}
-		
+	
 		//------ calcul de la distance totale entre les villes parcourues ----
 		
 		double distanceTotale = 0;
@@ -46,7 +48,8 @@ public class Distance {
 		
 		return distanceTotale;
 	}
-
+		
+	
 	//----- setters -----
 	public void setParcours(Ville[] parcours) {
 		this.parcours = parcours;

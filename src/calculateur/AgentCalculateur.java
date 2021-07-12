@@ -37,7 +37,12 @@ public class AgentCalculateur extends Agent {
 
                 //Préparation du template pour recevoir des messages
                 MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("Calcul"));
+<<<<<<< Updated upstream
                 //Recevoir les messages des autres agents
+=======
+//                MessageTemplate mt1 = MessageTemplate.MatchConversationId("IC");
+            	//Recevoir les messages des autres agents
+>>>>>>> Stashed changes
                 ACLMessage reponse1 = receive(mt1);
 
 
@@ -52,7 +57,7 @@ public class AgentCalculateur extends Agent {
 
                         //On récupère les villes dont la distance entre eux est minimale
 						Ville[] villesOrdonnees =  pvc.getPlusCourteDist(villes);
-
+						
                         ACLMessage reponse2 = new ACLMessage(ACLMessage.INFORM);
                         //Modification des paramètres de la requete ACLMessage
                         reponse2.addReceiver(new AID("Intermediaire", AID.ISLOCALNAME));
@@ -60,12 +65,16 @@ public class AgentCalculateur extends Agent {
                         reponse2.setContentObject(villesOrdonnees);
                         reponse2.setOntology("Calcul du chemin optimal");
                         //Envoi de message
+                        
+//                        reponse2.setConversationId("CI");
                         send(reponse2);
 
                     } catch (UnreadableException e) {
-                        e.printStackTrace();
+//                        e.printStackTrace();
+                    	System.out.println(e);
                     }catch (IOException e) {
-                        e.printStackTrace();
+//                        e.printStackTrace();
+                    	System.out.println(e);
                     }
                 }
 

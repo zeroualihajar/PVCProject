@@ -41,10 +41,10 @@ public class AlgoGenetic {
 	public double calculerScore(Chemin chemin, Ville villes[])
 	{
 		Distance distance = new Distance(chemin, villes);
-		double score = 1/ distance.getDistance();
+		double score = 1 / distance.getDistance();
 		
 		chemin.setScore(score);
-		
+	
 		return score;
 	}
 	
@@ -79,7 +79,7 @@ public class AlgoGenetic {
 		for(int i = 0; i < this.tailleTournoi; i++)
 		{
 			Chemin cheminTournoi = solutions.getChemin(i);
-			//tournoi.setChemin(i, cheminTournoi);
+			tournoi.setChemin(cheminTournoi, i);
 		}
 		
 		return tournoi.CheminApte(0);
@@ -101,10 +101,10 @@ public class AlgoGenetic {
 				int villeParcourus[] = new int[parent1.getnbreVilleParcourus()];
 				Arrays.fill(villeParcourus, -1);
 				Chemin enfant = new Chemin(villeParcourus);
+			
 				
-				
-				int substrpos1 = (int)(Math.random() * parent1.getnbreVilleParcourus());
-				int substrpos2 = (int)(Math.random() * parent1.getnbreVilleParcourus());
+				int substrpos1 = (int) (Math.random() * parent1.getnbreVilleParcourus());
+				int substrpos2 = (int) (Math.random() * parent1.getnbreVilleParcourus());
 			
 				final int debutPos = Math.min(substrpos1, substrpos2);
 				final int finPos = Math.max(substrpos1, substrpos2);
@@ -162,19 +162,18 @@ public class AlgoGenetic {
 					if(this.tauxMutation > Math.random())
 					{
 						
-						int newPosVille = (int)(Math.random() * chemin.getnbreVilleParcourus());
+						int newPosVille = (int) (Math.random() * chemin.getnbreVilleParcourus());
 						
 						int ville1 = chemin.getVille(newPosVille);
 						int ville2 = chemin.getVille(indexVille);
 						
-						chemin.setVille(ville1, indexVille);
-						chemin.setVille(ville2, indexVille);
+						chemin.setVille(indexVille, ville1);
+						chemin.setVille(newPosVille, ville2);
 					}
 				}
 			}
 			nouvSolutions.setChemin(chemin, solIndex);
 		}
-		
 		return nouvSolutions;
 	}
 	

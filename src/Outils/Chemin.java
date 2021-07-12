@@ -21,14 +21,14 @@ public class Chemin {
 	public Chemin(int nbreVilleParcourus)
 	{
 		//initialisation du tableaux
-		int[] villerempli = new int[nbreVilleParcourus];
-			System.out.println("nbreVilleParcourus "+nbreVilleParcourus);
-			villeParcourus =new int[nbreVilleParcourus];
+		int[] villerempli;
+		villerempli = new int[nbreVilleParcourus];
+//			villeParcourus =new int[nbreVilleParcourus];
 		//créer un chemin aléatoire  
 		for(int ville = 0; ville < nbreVilleParcourus; ville++)
 		{
 		
-			villeParcourus[ville] = ville; 
+			villerempli[ville] = ville; 
 		}
 		
 		this.villeParcourus = villerempli;

@@ -54,11 +54,11 @@ public class MapPanel extends JPanel {
 				} catch (final Exception ex) {
 					imageVille = null;
 				}
-
+				
 				villes.add(new Ville(villes.size() + 1, Character.toString(nomsVilles[villes.size()]), x, y, false));
 
-				System.out.println("Ville : " + Character.toString(nomsVilles[villes.size()]) + "\n(x,y) : (" + e.getX() + ", " + e.getY()
-						+ ")\nNbre de villes : " + villes.size() + "\n");
+//				System.out.println("Ville : " + Character.toString(nomsVilles[villes.size()]) + "\n(x,y) : (" + e.getX() + ", " + e.getY()
+//						+ ")\nNbre de villes : " + villes.size() + "\n");
 				repaint();
 			}
 		});
@@ -105,6 +105,8 @@ public class MapPanel extends JPanel {
 		for (Ville ville : villes) {
 			paintVille(g2d, ville);
 		}
+		
+		paintPlusCourtDistance(g2d);
 	}
 
 	/* ----- L'arri�re plan (la carte) du panel ----- */

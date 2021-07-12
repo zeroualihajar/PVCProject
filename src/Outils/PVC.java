@@ -17,15 +17,18 @@ public class PVC {
 	public double getMeilleureDistance() {
 		return meilleureDistance;
 	}
+	
+	public void setMeilleureDistance(double meilleureDistance) {
+		this.meilleureDistance = meilleureDistance;
+	}
+	
 	public int getEtapeCourante() {
 		return etapeCourante;
 	}
 	public void setEtapeCourante(int etapeCourante) {
 		this.etapeCourante = etapeCourante;
 	}
-	public void setMeilleureDistance(double meilleureDistance) {
-		this.meilleureDistance = meilleureDistance;
-	}
+	
 	public Ville[] getVilles() {
 		return villes;
 	}
@@ -68,7 +71,7 @@ public class PVC {
 		aGenit.definitScoreChemin(sol, villes);
 		
 		Distance debutDist = new Distance(sol.CheminApte(0), villes);
-		
+	
 		//------ on créé une génération courante ------------
 		int generation = 1;
 		

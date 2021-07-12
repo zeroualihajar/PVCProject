@@ -39,19 +39,23 @@ public class AgentVoyageur extends GuiAgent {
 		
 		parallelBehaviour.addSubBehaviour(new CyclicBehaviour() {
 			
-			private int compteur;
 			@Override
 			public void action() {
-				++compteur;
 				
 				MessageTemplate message1  = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("ca marche"));
 				ACLMessage acl1 = receive(message1);
 				
-				System.out.print("\n message 1: "+ message1);
+<<<<<<< Updated upstream
 				MessageTemplate message2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Tableau des villes ordonnees"));
 				ACLMessage acl2 = receive(message2);
-				System.out.print("\n message 2: "+ message2);
+
+=======
 				
+				MessageTemplate message2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Tableau des villes ordonnées"));
+				ACLMessage acl2 = receive(message2);
+				
+				
+>>>>>>> Stashed changes
 				if(acl1 !=null) {
 					System.out.println("L'emetteur de message : " +acl1.getSender());
 					System.out.println("Le destinataire de message : "+acl1.getInReplyTo());
@@ -66,16 +70,13 @@ public class AgentVoyageur extends GuiAgent {
 					try {
 						Ville[] villeOrdonnee = (Ville[]) acl2.getContentObject();
 						interfaceAgent.setVilles(villeOrdonnee);
-						interfaceAgent.map.setDistances(new ArrayList<Ville>(Arrays.asList(villeOrdonnee)));
-						interfaceAgent.map.setPlusCourt(true);
+						interfaceAgent.getMap().setDistances(new ArrayList<Ville>(Arrays.asList(villeOrdonnee)));
+						interfaceAgent.getMap().setPlusCourt(true);
 						
 						interfaceAgent.getPvc().setEtapeCourante(villeOrdonnee.length);
-						interfaceAgent.map.setEtapeActuelle(interfaceAgent.getPvc().getEtapeCourante());
+						interfaceAgent.getMap().setEtapeActuelle(interfaceAgent.getPvc().getEtapeCourante());
+						interfaceAgent.getMap().repaint();
 						
-						
-						System.out.println("L'etape actuelle : " +interfaceAgent.getPvc().getEtapeCourante());
-						
-						interfaceAgent.map.repaint();
 					} catch(UnreadableException ex) {
 						System.out.println(ex);
 					}
@@ -97,7 +98,6 @@ public class AgentVoyageur extends GuiAgent {
 			
 			List<Ville> villes = (List<Ville>)params.get("v1");
 			
-			System.out.println("Villes : "+villes.toString());
 			
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.REQUEST);
 			aclMessage.addReceiver(new AID("Intermediaire", AID.ISLOCALNAME));
@@ -108,9 +108,16 @@ public class AgentVoyageur extends GuiAgent {
 			} catch (IOException ex) {
 				System.out.println(ex);
 			}
+<<<<<<< Updated upstream
 			aclMessage.setOntology("ca marche");
 			send(aclMessage);
-			System.out.println(aclMessage); 
+=======
+			aclMessage.setOntology("ça marche");
+//			aclMessage.setConversationId("");
+			
+			send(aclMessage);
+			 
+>>>>>>> Stashed changes
 			break;
 			
 			default:

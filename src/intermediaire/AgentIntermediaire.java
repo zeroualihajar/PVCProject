@@ -32,18 +32,30 @@ public class AgentIntermediaire extends Agent {
             @Override
             public void action() {
 
+<<<<<<< Updated upstream
                 //Prï¿½paration du template pour recevoir des messages
                 MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("ca marche"));
                
+=======
+                //Préparation du template pour recevoir des messages
+                MessageTemplate mt1 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), MessageTemplate.MatchOntology("ça marche"));
+>>>>>>> Stashed changes
                 //Recevoir les messages des autres agents
+//                MessageTemplate mt1 = MessageTemplate.MatchConversationId("VI");
                 ACLMessage reponse1 = receive(mt1);
-                System.out.println("mt1 : " +mt1);
                 
-                System.out.println("Reception1 : " +reponse1);
+<<<<<<< Updated upstream
+                MessageTemplate mt2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Calcul du chemin optimal"));
+                ACLMessage reponse2 = receive(mt2);
+
+=======
                 
                 MessageTemplate mt2 = MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.INFORM), MessageTemplate.MatchOntology("Calcul du chemin optimal"));
                 ACLMessage reponse2 = receive(mt2);
-                System.out.println("Reception2 : " +reponse2);
+                
+			 
+                
+>>>>>>> Stashed changes
                 if(reponse1 != null){
                     try{
                         //On rï¿½cupï¿½re le contenu de reponse1 (ACLMessage)
@@ -52,10 +64,15 @@ public class AgentIntermediaire extends Agent {
                         ACLMessage reponse3 = new ACLMessage(ACLMessage.REQUEST);
 
                         //Modification des paramï¿½tres de la requete ACLMessage
-                        reponse3.addReceiver(new AID("Calculateur", AID.ISLOCALNAME));
+                        reponse3.addReceiver(new AID("calculateur", AID.ISLOCALNAME));
                         //On met la liste des ville dans le message
                         reponse3.setContentObject((Serializable) villes);
                         reponse3.setOntology("Calcul");
+<<<<<<< Updated upstream
+=======
+//                        reponse3.setConversationId("IC");
+                        
+>>>>>>> Stashed changes
                         //Envoi de message
                         send(reponse3);
                     } catch (UnreadableException e) {
@@ -67,11 +84,13 @@ public class AgentIntermediaire extends Agent {
                 else if(reponse2 != null){
                     try {
 
+<<<<<<< Updated upstream
+=======
 
-                        System.out.println("rec : "+reponse2);
+>>>>>>> Stashed changes
                         Ville[] villesOrdonnees = (Ville[]) reponse2.getContentObject();
 
-                        ACLMessage reponse3 = new ACLMessage(ACLMessage.REQUEST);
+                        ACLMessage reponse3 = new ACLMessage(ACLMessage.INFORM);
 
                         //Modification des paramï¿½tres de la requete ACLMessage
                         reponse3.addReceiver(new AID("Voyageur", AID.ISLOCALNAME));
@@ -92,5 +111,5 @@ public class AgentIntermediaire extends Agent {
 
             }
         });
-    }
+    };
 }
