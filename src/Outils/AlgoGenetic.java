@@ -28,7 +28,7 @@ public class AlgoGenetic {
 				
 	}
 	
-	// vérifier si le nombre de génération maximale est dépassé
+	// vï¿½rifier si le nombre de gï¿½nï¿½ration maximale est dï¿½passï¿½
 	public boolean conditionFin(int nbreGeneration, int maxGeneration)
 	{
 		return(nbreGeneration > maxGeneration);
@@ -73,7 +73,7 @@ public class AlgoGenetic {
 	{
 		Solutions tournoi =  new Solutions(this.tailleTournoi);
 		
-		//melanger le contenu des solutions créer aléatoirement pour commençer le tournoi 
+		//melanger le contenu des solutions crï¿½er alï¿½atoirement pour commenï¿½er le tournoi 
 		solutions.Melanger();
 		
 		for(int i = 0; i < this.tailleTournoi; i++)
